@@ -34,6 +34,8 @@ public class Main {
         double retencionPension = 0;
         double valorHora = 0;
         double cantidadHoras = 0;     /* double- para calculos con valores mas grandes*/
+        double bonoficacionEmpleado=0;
+        double valorSalarioMin= 0;
         int auxilioTransporte = 200000;       /* int - valor entero */
 
         System.out.println("Ingrese su usuario ");
@@ -43,8 +45,30 @@ public class Main {
         if (usuarioEmpleado.equals("Usuario de la base de datos")    /* el == se reemplazara por ".equals" */
                 && usuarioContrasena.equals("Contraseña de base de datos")) {   /* && para añadir otra validacion*/
             System.out.println("Ha ingresa de forma correcta");
-        }
-        else {
+            System.out.println("Ingrese el nombre del empleado: ");
+            nombreEmpleado=leer.nextLine();
+            System.out.println("Ingrese su documento de identidad: ");
+            documentoIdentidad=leer.nextLine();
+            System.out.println("Ingrese el dia de descanso (lunes a viernes): ");
+            diaDescanso=leer.nextLine();
+            System.out.println("Ingrese el valor de la hora: ");
+            valorHora=leer.nextDouble();
+            System.out.println("Ingrese la cantidad de horas trabajadas: ");
+            cantidadHoras=leer.nextDouble();
+            salarioBruto=cantidadHoras*valorHora;
+            System.out.println("Ingrese el valor del salario minimo para este año: ");
+            valorSalarioMin= leer.nextDouble();
+
+            if (salarioBruto>(valorSalarioMin*2)){
+                bonoficacionEmpleado=0;
+                auxilioTransporte=0;
+            } else {
+                bonoficacionEmpleado=salarioBruto*0.1;
+                auxilioTransporte=200000;
+            }
+            salarioNeto=salarioBruto+bonoficacionEmpleado+auxilioTransporte;
+            System.out.println("El salario neto es: "+ salarioNeto);
+        } else {
             System.out.println("Error de credenciales");
         }
 
